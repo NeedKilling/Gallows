@@ -1,12 +1,11 @@
 "use strict"
 
-let arrayWords = ['зелёный','материк','человек','индостриальный','специалист']
+let arrayWords = ['зеленый','материк','человек','индостриальный','специалист']
 
 
 let popUp = document.querySelector('.pop-up');
 let buttonRestart = document.querySelector('.restart');
-let numberGuesses = document.querySelector('.number');
-let blockGuesses = document.querySelector('.guessed-words')
+let numberGuesses = document.querySelector('.text');
 
 let alphabet = document.querySelector('.alphabet');
 let gallowsBlock = document.querySelectorAll('.gallows_block');
@@ -18,15 +17,11 @@ let input = document.querySelector('.input');
 function current(){
     return arrayWords[Math.floor(Math.random()*arrayWords.length)];
 }
-
-let guessed = 0;   // кол-во отгадданых
-let currentError = 0; // кол-во ошибок
+let currentError = 0;
 let WordsCurrent = current();
 let copyCurrent = WordsCurrent.split('');
 let text = [];
 let letterActive = [];
-
-
 
 Start(copyCurrent,text,currentError)
 
@@ -50,7 +45,7 @@ function Start(copyCurrent,text,currentError){
         if(copyCurrent.includes(letter)){
                     console.log(letter, 'bukva');  
             text.splice(copyCurrent.indexOf(letter),1,letter);
-            copyCurrent.splice(copyCurrent.indexOf(letter),1,letter.toUpperCase());
+            copyCurrent.splice(copyCurrent.indexOf(letter),1,' ');
                     console.log(copyCurrent);
                     console.log(text);
             if(letter   != copyCurrent.find((item)=>item == letter)){ /////// ищет в отредактируемом массиве дубликаты
@@ -59,28 +54,9 @@ function Start(copyCurrent,text,currentError){
                 console.log(letterActive)
             }
             input.innerHTML = text.join(' ');
-                if(copyCurrent.join('') == text.join('').toUpperCase()){
-                    
-                    guessed++
-                    blockGuesses.innerHTML = guessed;
-
-                    
-                    console.log(copyCurrent.join(''),"  ", text.join(''));
-
-                    //////////////////////////////
-                    copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
-                    text = [];
-                    textHiding(text,copyCurrent)
-                    input.innerHTML = text.join(' ');
-
-                    
-                    
-                    /////////////////////////
-                    letterActive.forEach((item)=>{
-                        item.classList.remove('active');
-                    });
-                    letterActive = [];
-                }
+                if(WordsCurrent == text.join('')){
+                    console.log(WordsCurrent,"  ", text.join(''));
+                };
             
 
         }else if( e.target.classList == 'alphabet'){
@@ -95,13 +71,6 @@ function Start(copyCurrent,text,currentError){
                 setTimeout(()=>{
                     popUp.classList.add('active');
                 },1500);
-                numberGuesses.innerHTML = guessed;
-                ////////
-                copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
-                text = [];
-                textHiding(text,copyCurrent)
-                input.innerHTML = text.join(' ');
-                
                 
             }
         
@@ -112,11 +81,11 @@ function Start(copyCurrent,text,currentError){
 
 
 buttonRestart.addEventListener('click',(e)=>{
-    guessed = 0;
+    
     popUp.classList.remove('active');
 
     restartBlock(letterActive,gallowsBlock);
-    letterActive = [];
+    resetGame()
 
 });
     
@@ -146,3 +115,10 @@ function restartBlock(letters,imageBlock){
 };
 
 
+function resetGame(){
+    copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
+    text = [];
+    textHiding(text,copyCurrent)
+    input.innerHTML = text.join(' ');
+    letterActive = [];
+};
