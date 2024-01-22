@@ -1,6 +1,6 @@
 "use strict"
 
-let arrayWords = ['зелёный','материк','человек','индостриальный','специалист']
+let arrayWords = ['зелёный','материк','человек','индастриальный','специалист','книга','тумбочка','картина','светильник','гантель','лопата','дежурный']
 
 
 let popUp = document.querySelector('.pop-up');
@@ -39,6 +39,7 @@ function Start(copyCurrent,text,currentError){
     
     
     alphabet.addEventListener('click',(e)=>{
+        console.log(arrayWords)
         console.log(text)
         let letter = e.target.textContent;
         
@@ -50,7 +51,7 @@ function Start(copyCurrent,text,currentError){
         if(copyCurrent.includes(letter)){
                     console.log(letter, 'bukva');  
             text.splice(copyCurrent.indexOf(letter),1,letter);
-            copyCurrent.splice(copyCurrent.indexOf(letter),1,letter.toUpperCase());
+            copyCurrent.splice(copyCurrent.indexOf(letter),1,letter.toUpperCase()); 
                     console.log(copyCurrent);
                     console.log(text);
             if(letter   != copyCurrent.find((item)=>item == letter)){ /////// ищет в отредактируемом массиве дубликаты
@@ -67,6 +68,9 @@ function Start(copyCurrent,text,currentError){
                     
                     console.log(copyCurrent.join(''),"  ", text.join(''));
 
+
+                    arrayWords = arrayWords.filter((item)=>item != copyCurrent.join('').toLowerCase()); /// удаляет из массива угадданные слова
+
                     //////////////////////////////
                     copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
                     text = [];
@@ -80,6 +84,8 @@ function Start(copyCurrent,text,currentError){
                         item.classList.remove('active');
                     });
                     letterActive = [];
+
+                    
                 }
             
 
