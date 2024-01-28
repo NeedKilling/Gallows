@@ -119,6 +119,7 @@ function Start(copyCurrent,text,currentError){
 
 buttonRestart.addEventListener('click',(e)=>{
     guessed = 0;
+    blockGuesses.innerHTML = guessed;
     popUp.classList.remove('active');
 
     restartBlock(letterActive,gallowsBlock);
