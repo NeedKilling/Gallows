@@ -7,7 +7,9 @@
     margin: 0;
 }
 body{
-    background-color: #d6d6d6;
+    height: 100vh;
+    background-color: #81b5e3;
+   // background: url("/img/1.jpg") center center/cover no-repeat   ;
 }
 .container{
     position: absolute;
@@ -127,6 +129,9 @@ body{
     background-color: #fff;
     padding: 10px;
     font-size: 30px;
+    ///////////////////
+    font-family: "Vinque Rg";
+    font-weight: 300;
 }
 .alphabet{
     width: 500px;
@@ -145,17 +150,17 @@ body{
         justify-content: center;
         align-items: center;
         font-size: 25px;
-        border-radius: 10px;
+        border-radius: 15px;
         cursor: pointer;
-        transition: hover .3s ease;
-        &:hover{
-            background-color: #242424;
-        }
+        transition: all .3s ease;
+        ///////////////////
+        font-family: "Vinque Rg";
+        font-weight: 300;
         &:active{
             transform: scale(1.05);
         }
         &.active{
-            background-color: #1e1e1e;
+            background-color: #3c3c3c;
             pointer-events: none;
             transform: scale(0.9);
         }
@@ -179,17 +184,27 @@ body{
         justify-content: space-around;
         align-items: center;
         width:600px;
-        height: 600px;
+        height: 700px;
         background-color: #d8d8d8;
         border-radius: 40px;
         box-shadow: 1px 1px 10px 3px #7b7b7b;
+            .title{
+                font-size: 50px;
+                font-family: "Another Danger";
+                font-weight: 300;
+            }
+        }
         .text{
             font-size: 30px;
+            ///////////////////
+            font-family: "Vinque Rg";
+            font-weight: 300;
         }
         img{
             width: 250px;
             height: 250px;
         }
+        
         .number-guesses-words{
             display: flex;
             flex-direction: column;
@@ -197,38 +212,45 @@ body{
            
             .number{
                 font-size: 100px;
+                ////////////////////
+                font-family: "Vinque Rg";
+                font-weight: 300;
             }
         }
         .restart{
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             border-radius: 100%;
             border: none;
             cursor:pointer;
+            background: none;
             img{
-                width: 40px;
-                height: 40px;
-                &:hover{
-                    animation: 0.4s infinite restart;
-                }
+                width: inherit;
+                height: inherit;
+                // &:hover{
+                //     //animation: 0.4s infinite restart;
+                // }
             }
             &:active{
                 transform:scale(1.05)
             }       
         }
-        
+        &.active{
+            display: flex;
+        }
     }
-    &.active{
-        display: flex;
-    }
-}
+    
+
 
 .guessed-words{
     position: absolute;
     top:20px;
     left: 20px;
     font-size: 40px;
+    //////////////////
+    font-family: "Vinque Rg";
+    font-weight: 300;
 }

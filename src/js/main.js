@@ -1,5 +1,9 @@
 "use strict"
 
+/////////////////////// сделать выбор темы для слов.
+///////////////////////  реализовать начальное меню.
+/////////////////////// изменить задний фон.
+
 let arrayWords = ['зелёный','материк','человек','индастриальный','специалист','книга','тумбочка','картина','светильник','гантель','лопата','дежурный']
 
 
@@ -98,15 +102,19 @@ function Start(copyCurrent,text,currentError){
             }else{
                 gallowsBlock[0].style.display = "none";
                 currentError = 0;
+                alphabet.style.cssText = "pointer-events: none";
                 setTimeout(()=>{
                     popUp.classList.add('active');
+                    text = [];
+                    textHiding(text,copyCurrent)
+                    input.innerHTML = text.join(' ');
                 },1500);
                 numberGuesses.innerHTML = guessed;
                 ////////
                 copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
-                text = [];
-                textHiding(text,copyCurrent)
-                input.innerHTML = text.join(' ');
+                
+                
+                
                 
                 
             }
@@ -118,10 +126,11 @@ function Start(copyCurrent,text,currentError){
 
 
 buttonRestart.addEventListener('click',(e)=>{
+    currentError = 0;
     guessed = 0;
     blockGuesses.innerHTML = guessed;
     popUp.classList.remove('active');
-
+    alphabet.style.cssText = "pointer-events: auto";
     restartBlock(letterActive,gallowsBlock);
     letterActive = [];
 
