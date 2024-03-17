@@ -3,8 +3,11 @@
 /////////////////////// сделать выбор темы для слов.
 ///////////////////////  реализовать начальное меню.
 /////////////////////// изменить задний фон.
+//////////////////////// НЕСКОЛЬКО РЕЖИМОВ : НА КАЖДОЕ СЛОВО 5 ОШИБОК;  НА ВСЕ СЛОВА 5 ОШИБОК НО С УПРОЩЕНИЕМ; ЕЩЕ БОЛЕЕ СЛОЖНЫЙ 
+//////////////////////////  ПОДСТВЕТКА БУКВ КОТОРЫЕ БЫЛИ ОШИБОЧНЫ
+///////////////////////////   СДЕЛАТЬ ДЛЯ РЕЖИМОВ СЕРИЮ УГАДАННЫХ СЛОВ.
 
-let arrayWords = ['зелёный','материк','человек','индастриальный','специалист','книга','тумбочка','картина','светильник','гантель','лопата','дежурный']
+let arrayWords = ['зелёный','материк','человек','индустриальный','специалист','книга','тумбочка','картина','светильник','гантель','лопата','дежурный']
 
 
 let popUp = document.querySelector('.pop-up');
@@ -43,60 +46,52 @@ function Start(copyCurrent,text,currentError){
     
     
     alphabet.addEventListener('click',(e)=>{
-        console.log(arrayWords)
-        console.log(text)
+        // console.log(arrayWords)
+        //  console.log(text)
         let letter = e.target.textContent;
-        
-        
-
-        console.log(copyCurrent.join(''),"  ", text.join('')," ",copyCurrent.length);
+        // console.log(copyCurrent.join(''),"  ", text.join('')," ",copyCurrent.length);
         
 
         if(copyCurrent.includes(letter)){
-                    console.log(letter, 'bukva');  
+                    //console.log(letter, 'bukva');  
             text.splice(copyCurrent.indexOf(letter),1,letter);
             copyCurrent.splice(copyCurrent.indexOf(letter),1,letter.toUpperCase()); 
-                    console.log(copyCurrent);
-                    console.log(text);
-            if(letter   != copyCurrent.find((item)=>item == letter)){ /////// ищет в отредактируемом массиве дубликаты
-                e.target.classList.add('active');
+                    //  console.log(copyCurrent);
+                    //  console.log(text);
+            if(letter != copyCurrent.find((item)=>item == letter)){ /////// ищет в отредактируемом массиве дубликаты
+                e.target.innerHTML += '<svg viewBox="0 0 100 100"><path d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80"/></svg>'
+                e.target.classList.add('true');
                 letterActive.push(e.target);
-                console.log(letterActive)
+                // console.log(letterActive)
             }
             input.innerHTML = text.join(' ');
                 if(copyCurrent.join('') == text.join('').toUpperCase()){
-                    
                     guessed++
                     blockGuesses.innerHTML = guessed;
 
-                    
-                    console.log(copyCurrent.join(''),"  ", text.join(''));
-
-
+                    //console.log(copyCurrent.join(''),"  ", text.join(''));
                     arrayWords = arrayWords.filter((item)=>item != copyCurrent.join('').toLowerCase()); /// удаляет из массива угадданные слова
-
                     //////////////////////////////
                     copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
                     text = [];
                     textHiding(text,copyCurrent)
-                    input.innerHTML = text.join(' ');
-
-                    
-                    
+                    input.innerHTML = text.join(' '); 
                     /////////////////////////
-                    letterActive.forEach((item)=>{
-                        item.classList.remove('active');
-                    });
+                    restartBlock(letterActive,gallowsBlock);
                     letterActive = [];
+                    currentError = 0;
+
 
                     
                 }
-            
-
+                
         }else if( e.target.classList == 'alphabet'){
-            console.log("done")
+            //console.log(e.target.classList);
         }else{
-            if(currentError < 5){
+            if(currentError < 6){
+                e.target.innerHTML += '<svg viewBox="0 0 100 100"><path d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80"/></svg>'
+                e.target.classList.add('false');
+                letterActive.push(e.target);
                 gallowsBlock[currentError].style.display = "block";
                 currentError++;
             }else{
@@ -111,17 +106,11 @@ function Start(copyCurrent,text,currentError){
                 },1500);
                 numberGuesses.innerHTML = guessed;
                 ////////
-                copyCurrent = arrayWords[Math.floor(Math.random()*arrayWords.length)].split('');
-                
-                
-                
-                
-                
+                copyCurrent = current().split('');   
             }
         
         }
     });
-    return;
 }
 
 
@@ -146,15 +135,13 @@ function textHiding(text,copyCurrent){
     })
 }
 
-function gameWin(currentWords,input){
-    if(currentWords.join('') == input.join('')){
-        console.log(currentWords.join(''),"  ", input.join(''));
-    };
-};
+
 
 function restartBlock(letters,imageBlock){
     letters.forEach((item)=>{
-        item.classList.remove('active');
+        item.classList.remove('true');
+        item.classList.remove('false');
+        item.removeChild(item.lastChild)
     });
     imageBlock.forEach((item)=>{
         item.style.display = 'none';

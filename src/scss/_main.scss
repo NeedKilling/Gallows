@@ -1,5 +1,5 @@
 @import "keyframes";
-
+@import "fonts";
 
 *{
     box-sizing: border-box;
@@ -38,8 +38,6 @@ body{
 
         margin: 0 auto;
         &_block{
-            
-            border: 2px solid #000;
             &.stool{
                 display: none;
                 border: none;
@@ -56,11 +54,12 @@ body{
             &.human{
                 display: none;
                 position: absolute;
-                width: 130px;
-                height: 130px;
-                bottom: 74px;
-                right: 7px;
-                border:none;
+                bottom: 68px;
+                right: 28px;
+                img{
+                    width: 84px;
+                    height: 186px;
+                }
                 
             }
             &.main{
@@ -70,50 +69,58 @@ body{
                 height: 360px;
                 bottom: 0px;
                 left: 30px;
-                background-color: #2c2c2c;
+                img{
+                    width: inherit;
+                    height: inherit;
+                }
                 
                 
             }
             &.transverse{
                 display: none;
                 position: absolute;
-                width: 280px;
-                height: 30px;
                 top: 30px;
                 left: 0px;
-                background-color: #2c2c2c;
+                
+                .submain{
+                    width: 280px;
+                    height: 40px;
+                }
                
                 .addition{
                     position: absolute;
-                    top: 5px;
-                    left: 80px;
-                    width: 15px;
-                    height: 90px;
-                    transform: rotate(45deg);
-                    background-color: #2c2c2c;
+                    top: 33px;
+                    left: 63px;
+                    width: 100px;
+                    height: 100px;
+                   
+                   
                     
                 }
             }
             &.rope{
                 display: none;
                 position: absolute;
-                width: 2px;
-                height: 120px;
                 top: 30px;
-                right: 70px;
-                background-color: #2c2c2c;
-                .loop{
-                    border: 2px solid #000;
-                    position: absolute;
-                    width: 40px;
-                    height: 50px;
-                    right: -50%;
-                    transform: translateX(+50%);
-                    top: 116px;
-                    border-radius: 20px/25px;
-                    
+                right: 50px;
+                .skein{
+                    height: 80px;
+                    position: relative;
+                    top: -2px;
                 }
             }
+            &.loop{
+                display:none;
+                position: absolute; 
+                right: 47px;
+                top: 104px;
+                img{
+                    width: 40px;
+                    height: 50px;   
+                }
+            }
+
+
         }
     }
 }
@@ -130,9 +137,10 @@ body{
     padding: 10px;
     font-size: 30px;
     ///////////////////
-    font-family: "Vinque Rg";
+    font-family: "VinqueRg";
     font-weight: 300;
 }
+
 .alphabet{
     width: 500px;
     margin: 20px auto 0 auto;
@@ -142,30 +150,71 @@ body{
     gap: 10px;  
 
     .letter{
+        position: relative;
         width: 45px;
         height: 45px;
-        background-color: #585858;
+        //background-color: #585858;
         color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 25px;
-        border-radius: 15px;
+        font-size: 35px;
+        border-radius: 100%;
         cursor: pointer;
         transition: all .3s ease;
         ///////////////////
-        font-family: "Vinque Rg";
+        font-family: "VinqueRg";
         font-weight: 300;
         &:active{
             transform: scale(1.05);
         }
-        &.active{
-            background-color: #3c3c3c;
+        &.true{
             pointer-events: none;
-            transform: scale(0.9);
         }
-    }
+        &.false::before{
+            pointer-events: none; 
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -2px;
+            width:  0px;
+            height: 5px;
+            transform: rotate(45deg);
+            background-color: #8f1717;
+            animation: false 0.5s ease forwards;
 
+        }
+        // &::before{
+        //     content: '';
+        //     position: absolute;
+
+        //     width:  0px;
+        //     height: 5px;
+        //     transform: rotate(135deg);
+        //     background-color: #8f1717;
+        // }
+/////////////////////////////////////////////////////////////
+        & svg {
+            position: absolute;
+            top: 0;
+            left: -2;
+            width: 110%;
+            height: 110%;
+          }
+        
+        & path {
+            fill: none;
+            stroke: #8f1717;
+            stroke-width: 6;
+            stroke-dasharray: 1260; /* длина окружности */
+            stroke-dashoffset: 1260; /* начальное смещение */
+            
+            animation: draw 3s linear forwards; /* 5s - время анимации */
+          }
+        
+          
+    }
+////////////////////////////////////////////////////
 }
 
 .pop-up{
@@ -183,21 +232,21 @@ body{
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        width:600px;
+        width:450px;
         height: 700px;
         background-color: #d8d8d8;
         border-radius: 40px;
         box-shadow: 1px 1px 10px 3px #7b7b7b;
             .title{
-                font-size: 50px;
-                font-family: "Another Danger";
+                font-size: 65px;
+                font-family: "AnotherDanger";
                 font-weight: 300;
             }
         }
         .text{
             font-size: 30px;
             ///////////////////
-            font-family: "Vinque Rg";
+            font-family: "VinqueRg";
             font-weight: 300;
         }
         img{
@@ -213,7 +262,7 @@ body{
             .number{
                 font-size: 100px;
                 ////////////////////
-                font-family: "Vinque Rg";
+                font-family: "VinqueRg";
                 font-weight: 300;
             }
         }
@@ -221,8 +270,8 @@ body{
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100px;
-            height: 100px;
+            width: 125px;
+            height: 125px;
             border-radius: 100%;
             border: none;
             cursor:pointer;
@@ -251,6 +300,6 @@ body{
     left: 20px;
     font-size: 40px;
     //////////////////
-    font-family: "Vinque Rg";
+    font-family: "VinqueRg";
     font-weight: 300;
 }

@@ -14,10 +14,23 @@
 @media(max-width: 1280px){
     .container{
         width: 900px;
+        max-height: 800px;
         
     }
 }
 @media(max-width: 480px){
+   
+        @keyframes false{
+            0%{
+                
+                width: 0px;
+            }
+            100%{
+               
+            width: 40px;
+        }
+        }
+    
     .game_block{
         border-radius: 0px;
     }
