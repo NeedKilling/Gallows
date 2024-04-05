@@ -165,14 +165,8 @@ body{
         ///////////////////
         font-family: "VinqueRg";
         font-weight: 300;
-        &:active{
-            transform: scale(1.05);
-        }
-        &.true{
-            pointer-events: none;
-        }
         &.false::before{
-            pointer-events: none; 
+            //pointer-events: none; 
             content: '';
             position: absolute;
             top: 50%;
@@ -226,6 +220,13 @@ body{
     z-index: 1;
     justify-content: center;
     align-items: center;
+    &_scrollPaper{
+        position: absolute;
+        width: 550px;
+        height: 800px;
+        // box-shadow: 1px 1px 10px 3px #7b7b7b;
+        z-index: 1;
+    }
     &_content{
         padding: 20px;
         display: flex;
@@ -233,14 +234,29 @@ body{
         justify-content: space-around;
         align-items: center;
         width:450px;
-        height: 700px;
-        background-color: #d8d8d8;
+        height: 680px;
+        z-index: 2;
+        //background-color: #d8d8d8;
         border-radius: 40px;
-        box-shadow: 1px 1px 10px 3px #7b7b7b;
+        
             .title{
                 font-size: 65px;
                 font-family: "AnotherDanger";
                 font-weight: 300;
+            }
+            .guessed-word{
+                padding: 10px;
+                border: 10px double black;
+                display: block;
+                text-align: center;
+                font-family: "VinqueRg";
+                font-weight: 300;
+                
+                &_text{
+                    display: block;
+                    margin-top: 10px;
+                    font-size: 40px;
+                }
             }
         }
         .text{
@@ -249,7 +265,7 @@ body{
             font-family: "VinqueRg";
             font-weight: 300;
         }
-        img{
+        .scull{
             width: 250px;
             height: 250px;
         }
