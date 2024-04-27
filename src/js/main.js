@@ -41,10 +41,10 @@ Start(copyCurrent,text,currentError);
 function Start(copyCurrent,text,currentError){  
 
    textHiding(text,copyCurrent);
-        
+   input.innerHTML = text.join(' ');
     
 alphabet.addEventListener('click',(e)=>{
-        
+        console.log(copyCurrent)
         const letter = e.target.textContent;
       
     if(e.target.classList.contains('letter')){
@@ -78,6 +78,8 @@ alphabet.addEventListener('click',(e)=>{
                     copyCurrent = current().split('');
                     text = [];
                     textHiding(text,copyCurrent)
+                    input.innerHTML = text.join(' ');
+
                     /////////////////////////
                     restartBlock(letterActive,gallowsBlock);
                     letterActive = [];
@@ -101,11 +103,17 @@ alphabet.addEventListener('click',(e)=>{
                 popUp.classList.add('active');
                 text = [];
                 textHiding(text,copyCurrent)
+                input.innerHTML = text.join(' ');
+
+
+
                 
-                guessedWords.innerHTML = copyCurrent.join('').toLowerCase();
-                copyCurrent = current().split('');
+                
             },1500);
             
+            guessedWords.innerHTML = copyCurrent.join('').toLowerCase();
+            copyCurrent = current().split('');
+
             numberGuesses.innerHTML = guessed;
             ////////
             
@@ -125,6 +133,11 @@ buttonRestart.addEventListener('click',(e)=>{
     alphabet.style.cssText = "pointer-events: auto";
     restartBlock(letterActive,gallowsBlock);
     letterActive = [];
+    console.log(copyCurrent)
+
+    text = [];
+    textHiding(text,copyCurrent)
+    input.innerHTML = text.join(' ');
 
 });
     
@@ -136,7 +149,6 @@ function textHiding(text,copyCurrent){
         item = '_';
         text.push(item);
     })
-    input.innerHTML = text.join(' ');
 }
 
 
