@@ -40,10 +40,11 @@ Start(copyCurrent,text,currentError);
 
 function Start(copyCurrent,text,currentError){  
 
-   textHiding(text,copyCurrent);
-   input.innerHTML = text.join(' ');
+    textHiding(text,copyCurrent);
     
-alphabet.addEventListener('click',(e)=>{
+    
+alphabet.addEventListener('click',(e)=>{    
+
         console.log(copyCurrent)
         const letter = e.target.textContent;
       
@@ -78,7 +79,7 @@ alphabet.addEventListener('click',(e)=>{
                     copyCurrent = current().split('');
                     text = [];
                     textHiding(text,copyCurrent)
-                    input.innerHTML = text.join(' ');
+                   
 
                     /////////////////////////
                     restartBlock(letterActive,gallowsBlock);
@@ -101,18 +102,10 @@ alphabet.addEventListener('click',(e)=>{
           
             setTimeout(()=>{
                 popUp.classList.add('active');
-                text = [];
-                textHiding(text,copyCurrent)
-                input.innerHTML = text.join(' ');
-
-
-
-                
-                
             },1500);
             
             guessedWords.innerHTML = copyCurrent.join('').toLowerCase();
-            copyCurrent = current().split('');
+            
 
             numberGuesses.innerHTML = guessed;
             ////////
@@ -123,23 +116,26 @@ alphabet.addEventListener('click',(e)=>{
         }
     });
 
+    buttonRestart.addEventListener('click',(e)=>{
+        currentError = 0;
+        guessed = 0;
+        blockGuesses.innerHTML = guessed;
+        popUp.classList.remove('active');
+        alphabet.style.cssText = "pointer-events: auto";
+        restartBlock(letterActive,gallowsBlock);
+        letterActive = [];
+        
+    
+        copyCurrent = current().split('');
+        console.log(copyCurrent)
+        text = [];
+        textHiding(text,copyCurrent)
+    
+    });
+
 }
 
-buttonRestart.addEventListener('click',(e)=>{
-    currentError = 0;
-    guessed = 0;
-    blockGuesses.innerHTML = guessed;
-    popUp.classList.remove('active');
-    alphabet.style.cssText = "pointer-events: auto";
-    restartBlock(letterActive,gallowsBlock);
-    letterActive = [];
-    console.log(copyCurrent)
 
-    text = [];
-    textHiding(text,copyCurrent)
-    input.innerHTML = text.join(' ');
-
-});
     
 
 
@@ -149,6 +145,7 @@ function textHiding(text,copyCurrent){
         item = '_';
         text.push(item);
     })
+    input.innerHTML = text.join(' ');
 }
 
 
